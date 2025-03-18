@@ -1,0 +1,112 @@
+:root{
+    --underline-default : #192929;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+html{
+    font-size: 16px;
+    font-family: 'Switzer', sans-serif;
+    background-color: #F7F7F7;
+    color:#192929;
+}
+.list-ele
+{
+    list-style-type: none;
+    margin-top: 6px;
+    position: relative;
+}
+.img-list-ele{
+    margin-left: 10px;
+    font-weight: 500;
+}
+#nav{
+    width: 100vw;
+    font-weight: 300;
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+#nav-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+#nav-img{
+    display: flex;
+    flex-direction: row;
+    width:45%;
+}
+#profile-pic{
+    width:30px;
+    height: 30px;
+}
+#nav-list{
+    display: flex;
+    width: 18%;
+    flex-direction:row;
+    justify-content: space-around;
+}
+#dm-lm-toggle{
+    position: relative;
+    display: flex;
+}
+.list-ele::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:2px;
+    width:100%;
+    height:1px;
+    background-color:var(--underline-default);
+    transform:scaleX(0);
+    transition: transform 0.5s ease-in-out;
+}
+.list-ele:hover::after{
+    transform:scaleX(1);
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+}
+/* Contact page CSS */
+#contact-space{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+#contact-box{
+    width: 50%;
+    padding: 100px;
+    margin-bottom: 100px;
+    position: relative;
+}
+#reach-out{
+    font-size: 4.25rem;
+    font-weight:300;
+    letter-spacing: -1.25px;
+}
+#link-space{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    padding: 170px;
+    justify-content: flex-start;
+}
+#mail-space{
+    height: 20%;
+    margin-bottom: 10px;
+    padding-bottom: 100px;
+}
+#socials-space{
+margin-top:-20px;
+}
+.link-header{
+    margin-bottom:5px;
+    font-weight: 500;
+}
