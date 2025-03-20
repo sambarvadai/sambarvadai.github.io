@@ -37,6 +37,7 @@ html{
     display: flex;
     flex-direction: row;
     width:45%;
+    z-index: 10;
 }
 #profile-pic{
     width:30px;
