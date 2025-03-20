@@ -71,6 +71,31 @@ html{
     text-decoration: none;
     color: inherit;
 }
+/* Main page css */
+#content-section{
+    display: flex;
+    flex-direction: row;
+    height: 80vh;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+#content-section > div *{
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+#hero-container-1{
+    width: 40%;
+    position: block;
+    margin: 150px auto;
+    margin-right: 50px;
+    padding-left: 150px;    
+}
+#hero-container-2{
+    width:15%;
+    position: block;
+    margin: 200px auto;
+}
 /* Contact page CSS */
 #contact-space{
     display: flex;
