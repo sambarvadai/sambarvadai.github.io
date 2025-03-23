@@ -30,3 +30,39 @@ window.onload = function(){
     mybtn.addEventListener("click", applyDarkMode);
     toggleDarkMode();
 };
+//Typing effect
+const element = document.getElementById('hero-line1');
+const rawHTML = element.innerHTML.trim();
+element.innerHTML = ''; // clear it to start
+
+let typeSpeed = 50;
+let resetDelay = 2500;
+
+function typeHTML(el, html, i = 0) {
+    let tag = false;
+    let text = '';
+    function type() {
+        let char = html[i++];
+        if (char === '<') {
+            tag = true;
+        }
+        text += char;
+        if (char === '>') {
+            tag = false;
+        }
+
+        el.innerHTML = text;
+        if (i < html.length) {
+            setTimeout(type, tag ? 0 : typeSpeed);
+        } else {
+            // Finished typing — reset after delay
+            setTimeout(() => {
+                el.innerHTML = '';
+                typeHTML(el, html); // restart animation
+            }, resetDelay);
+        }
+    }
+
+    type();
+}
+typeHTML(element, rawHTML);
