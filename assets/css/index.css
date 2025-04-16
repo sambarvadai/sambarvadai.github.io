@@ -122,6 +122,7 @@ html{
     width: 50%;
     height: 100%;
     padding: 170px;
+    margin-top: 75px;
     justify-content: flex-start;
 }
 #mail-space{
@@ -135,4 +136,34 @@ margin-top:-20px;
 .link-header{
     margin-bottom:5px;
     font-weight: 700;
+}
+/* Sbout page css */
+#about-main{
+    padding: 30px;
+    margin: 45px;
+    font-weight: 300;
+}
+#about-title1{
+    font-weight:600;
+    text-align: center;
+    font-size: 1.2rem;
+}
+#about-content-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20rem;
+    margin-top: 50px;
+}
+#cell1{
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.4rem;
+}
+#cell2{
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+}
+#fte{
+    text-decoration: underline;
 }
