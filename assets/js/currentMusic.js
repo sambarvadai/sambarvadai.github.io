@@ -12,4 +12,4 @@ async function getCurrentMusic(){
     }
 }
 getCurrentMusic();
-setInterval(getCurrentMusic, 1000); // Update every 30 seconds
+setInterval(getCurrentMusic, 30000); // Update every 30 seconds
