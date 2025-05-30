@@ -9,8 +9,8 @@
 html{
     font-size: 16px;
     font-family: 'Switzer', sans-serif;
-    background-color: #F7F7F7;
-    color:#192929;
+    background-color: #faf8f5; /*original is F7f7f7 / #faf0aa */
+    color:#1a1a1a;/*original is 192929 or 3d3d3d */
 }
 .list-ele
 {
@@ -23,6 +23,7 @@ html{
     font-weight: 500;
 }
 #nav{
+    position: sticky;
     width: 100vw;
     font-weight: 300;
     font-size: 0.8rem;
@@ -137,13 +138,17 @@ margin-top:-20px;
     margin-bottom:5px;
     font-weight: 700;
 }
-/* Sbout page css */
+/* About page css */
 #about-main{
     padding: 30px;
     margin: 45px;
     font-weight: 300;
+    width: 70%;
+    margin: auto;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
-#about-title1{
+.about-page-titles{
     font-weight:600;
     text-align: center;
     font-size: 1.2rem;
@@ -155,15 +160,69 @@ margin-top:-20px;
     margin-top: 50px;
 }
 #cell1{
-    font-size: 0.85rem;
-    font-weight: 500;
     line-height: 1.4rem;
 }
 #cell2{
-    font-size: 0.85rem;
-    font-weight: 500;
     line-height: 1.6rem;
 }
 #fte{
     text-decoration: underline;
 }
+#work-experience{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    margin: auto;
+}
+.work-exp-title{
+    font-size: 2.5rem;
+    text-align: center;
+    transform: translateY(35%);
+    position: relative;
+}
+.job-list{
+    position: relative;
+    transform: translateX(28%);
+    width: 70%;
+    line-height: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+ol.custom-ol {
+    list-style: none;
+    counter-reset: custom-counter;
+    padding-left: 1.5rem;
+  }
+  
+  ol.custom-ol li {
+    counter-increment: custom-counter;
+    position: relative;
+    padding-left: 3rem;
+  }
+  
+  ol.custom-ol li::before {
+    content: counter(custom-counter, decimal-leading-zero) ". ";
+    position: absolute;
+    left: 0;
+    color: var(--underline-default);
+    font-weight: bold;
+    padding-right: 1rem;
+    font-family: monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .year{
+    font-weight:300;
+  }
+  .faint-line {
+    border: none;
+    border-top: 1px solid var(--underline-default);
+    opacity: 0.1; /* very faint line */
+    margin: 1.5rem 0;
+  }
+  .image-main{
+    padding-top: 50px;
+    display: block;
+    width: 40%;
+    height: auto;
+    margin: 0 auto;
+  }

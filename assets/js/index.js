@@ -16,8 +16,8 @@ window.onload = function(){
         {   
             //change to dark mode:
             mybtn.innerHTML = "Dark Mode";
-            document.documentElement.style.backgroundColor="#F7F7F7";
-            document.body.style.color = "#192929";
+            document.documentElement.style.backgroundColor="#faf8f5";
+            document.body.style.color = "#1a1a1a";
             document.documentElement.style.setProperty("--underline-default","#192929");
             
         }
