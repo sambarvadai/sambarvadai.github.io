@@ -21,7 +21,8 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html --no-cache"
+    "start": "parcel index.html --no-cache",
+    "build": "parcel build index.html --no-cache --public-url ./"
   },
   "repository": {
     "type": "git",
