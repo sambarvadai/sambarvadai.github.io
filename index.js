@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 const App = () => {
     
     return (
-        <div className="font-stack bg-[#E7E7E7] dark:bg-[#1F1F1F]">
+        <div className="font-gsf bg-[#FFFFFF] dark:bg-[#1F1F1F]">
             <Navbar />
             <Outlet />
         </div>
