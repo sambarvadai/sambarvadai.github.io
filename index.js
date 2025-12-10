@@ -34,7 +34,7 @@ let router = createBrowserRouter(
     },
   ],
   {
-    basename: "/sambarvadai.github.io"
+    basename: "/"
   }
 );
 const root = ReactDOM.createRoot(document.getElementById('root'));
