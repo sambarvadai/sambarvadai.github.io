@@ -6,7 +6,7 @@ const IntroComponent = () => {
     const linkedinRef = React.useRef<HTMLAnchorElement>(null);
     const dribbbleRef = React.useRef<HTMLAnchorElement>(null);
     return (
-        <section className="flex items-center justify-center h-screen">
+        <section className="flex items-center justify-center">
             <Tooltip elementRef={emailRef} >
                 <span className="hidden">Say Hi!</span>
             </Tooltip>

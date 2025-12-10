@@ -9,29 +9,33 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 const App = () => {
     
     return (
-        <div className="font-gsf bg-[#FFFFFF] dark:bg-[#1F1F1F]">
+        <div className="min-h-screen font-gsf bg-[#FFFFFF] dark:bg-[#1F1F1F]">
             <Navbar />
             <Outlet />
         </div>
     );
 }
-let router = createBrowserRouter([
+let router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: App,
+      errorElement: <FourOhFourError />,
+      children: [
         {
-            path: "/",
-        Component: App,
-        errorElement: <FourOhFourError />,
-        children: [
-            {
-                path: "/",
-                Component: IntroComponent,
-            },
-            {
-                path: "about",
-                Component: AboutComponent,
-            }
-            ]
-        }
-])
-    {/*TODO: Set up errorboundary for router config */}
+          index: true,
+          Component: IntroComponent,
+        },
+        {
+          path: "about",
+          Component: AboutComponent,
+        },
+      ],
+    },
+  ],
+  {
+    basename: "/sambarvadai.github.io"
+  }
+);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<RouterProvider router={router} />);

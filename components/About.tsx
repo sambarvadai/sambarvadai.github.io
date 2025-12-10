@@ -1,3 +1,5 @@
+import AcordionComponent from "./acordion";
+import { aboutSections } from "../data/acordionData";
 const AboutComponent = () => {
     return (
         <div className="flex items-center justify-center h-screen w-[60%] m-auto">
@@ -8,6 +10,7 @@ const AboutComponent = () => {
                 <p className="mt-5">After mananging projects and delivering quality work, I decided to get back into tech and face the technical challenges head on. What's the fun in staying behind the scenes when you can get your hands dirty?</p>
                 <p className="mt-5">So, I packed my bags and moved to another country...and studied another thing.</p>
                 <p className="mt-5 text-lg">Oh, and one more thing: I'm looking for Full time opportunities 😁</p>
+                <AcordionComponent props={aboutSections} />
             </div>
         </div>
     )
