@@ -5,7 +5,7 @@ export const projectData = [
     desc: "An agentic AI tool powered by Gemini and MCP to automate system diagnostics and repair.",
     links: {
       gitLink: "https://github.com/sambarvadai/atlantis",
-      deckLink: "https://yourdeck.com/atlantis"
+      deckLink: "#"
     }
   },
     {
