@@ -2,9 +2,10 @@ import react, {useState, useEffect} from "react";
 import { Link } from "react-router";
 const Navbar = () => {
     const [clickMenu, setClickMenu] = useState(false);
-    const [darkMode, setDarkMode] = useState(() => {
-        return localStorage.getItem("theme") === "dark";
-    });
+    const [darkMode, setDarkMode] = useState(() =>
+  document.documentElement.classList.contains("dark")
+);
+
     useEffect(() => {
         if (darkMode) {
             document.documentElement.classList.add("dark");
