@@ -14,7 +14,7 @@ export const projectData = [
     desc: "TypeScript project for crowd-sourcing drugstore availability.",
     links: {
       gitLink: "https://github.com/sambarvadai/drugstore-availability-crowdsource",
-      deckLink: "https://yourdeck.com/drugstore-crowdsource"
+      deckLink: "#"
     }
   },
 
@@ -24,7 +24,7 @@ export const projectData = [
     desc: "A dockerized, self-hosted uptime monitoring platform.",
     links: {
       gitLink: "https://github.com/sambarvadai/uptime-check",
-      deckLink: "https://yourdeck.com/reset-scripts"
+      deckLink: "#"
     }
   },
   {
@@ -33,7 +33,7 @@ export const projectData = [
     desc: "Experimental projects vibecoded with Codex and Gemini.",
     links: {
       gitLink: "https://github.com/sambarvadai/vibecode-labs",
-      deckLink: "https://yourdeck.com/vibecode-labs"
+      deckLink: "#"
     }
   },
     {
@@ -42,7 +42,7 @@ export const projectData = [
     desc: "Collection of JavaScript/Node.js projects.",
     links: {
       gitLink: "https://github.com/sambarvadai/node-projects",
-      deckLink: "https://yourdeck.com/node-projects"
+      deckLink: "#"
     }
   },
   {
@@ -51,7 +51,7 @@ export const projectData = [
     desc: "Frontend Mentor practice HTML/CSS builds.",
     links: {
       gitLink: "https://github.com/sambarvadai/frontend-mentor-codes",
-      deckLink: "https://yourdeck.com/frontend-mentor"
+      deckLink: "#"
     }
   },
     {
@@ -60,7 +60,7 @@ export const projectData = [
     desc: "Scripts to automate application installs after a system reset.",
     links: {
       gitLink: "https://github.com/sambarvadai/Reset-Scripts",
-      deckLink: "https://yourdeck.com/reset-scripts"
+      deckLink: "#"
     }
   },
 ];
