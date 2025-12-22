@@ -24,10 +24,11 @@ const IntroComponent = () => {
                 <h3 className="text-gray-500 dark:text-gray-200">I build web and mobile applications and sometimes try to design stuff.</h3>
                 <h3 className="text-gray-500 dark:text-gray-200">I also spend a lot of time breaking and fixing the stuff that I make.</h3>
                 <div className="flex flex-row gap-5 mt-5 text-gray-600 dark:text-gray-300">
-                    <a className="underline hover:font-semibold">Email Me!</a>
-                    <a className="underline hover:font-semibold">Github</a>
-                    <a className="underline hover:font-semibold">Linkedin</a>
-                    <a className="underline hover:font-semibold">Dribbble</a>
+                    <a className="underline hover:font-semibold" href="mailto:anirudh@sambarvadai.dev?subject=Hello!">Say Hi!↗</a>
+                    <a className="underline hover:font-semibold" href="mailto:canirudh.work@gmail.com?subject=Recruiter Connect!">Email: For Recruiters!↗</a>
+                    <a className="underline hover:font-semibold" href="https://github.com/sambarvadai">Github</a>
+                    <a className="underline hover:font-semibold" href="https://www.linkedin.com/in/anicsekaran">Linkedin</a>
+                    <a className="underline hover:font-semibold" href="https://www.dribbble.com/sambarvadai">Dribbble</a>
                 </div>
             </div>
         </section>
