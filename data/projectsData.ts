@@ -20,7 +20,7 @@ export const projectData = [
 
   {
     id: 3,
-    name: "Self hosted umtime monitoring platform",
+    name: "Self hosted uptime monitoring platform",
     desc: "A dockerized, self-hosted uptime monitoring platform.",
     links: {
       gitLink: "https://github.com/sambarvadai/uptime-check",
