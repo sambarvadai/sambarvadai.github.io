@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        (function () {
-            try {
-                const theme = localStorage.getItem("theme");
-                const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-                if (theme === "dark" || (!theme && prefersDark)) {
-                    document.documentElement.classList.add("dark");
-                }
-            } catch (e) { }
-        })();
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to my portfolio:sambarvadai.dev</title>
-    <link href="index.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Anirudh Chandrasekaran: sambarvadai.dev</title>
 </head>
-<body class="bg-[#FFFFFF] dark:bg-[#1F1F1F]">
-    <div id="root"></div>
-    <script src="./index.js" type="module"></script>
-    <script type="module" src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs">
-    </script>
-
+<body>
+    <div id="root">
+        <h1>Hello World</h1>
+    </div>
+    <script src="home.tsx" type="module"></script>
 </body>
 </html>

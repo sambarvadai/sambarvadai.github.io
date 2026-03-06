@@ -1,0 +1,173 @@
+import React, { useRef, useState, useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import CardStack from "./components/CardStack";
+import MenuButton from "./components/MenuButton";
+import Canvas from "./components/Canvas";
+import About from "./components/About";
+import WorkExperience from "./components/WorkExperience";
+import WorkProjects from "./components/WorkProjects";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
+
+const img1 = new URL("./assets/img1.png", import.meta.url).href;
+const img2 = new URL("./assets/img2.png", import.meta.url).href;
+const img3 = new URL("./assets/img3.png", import.meta.url).href;
+const img4 = new URL("./assets/img4.png", import.meta.url).href;
+const img5 = new URL("./assets/img5.png", import.meta.url).href;
+const audioSrc = new URL("./audio/anirudh-name.mp3", import.meta.url).href;
+
+const App = () => {
+    const trackRef = useRef<HTMLAudioElement | null>(null);
+    const leftRef = useRef<HTMLDivElement | null>(null);
+    const rightRef = useRef<HTMLDivElement | null>(null);
+    const menuRef = useRef<HTMLDivElement | null>(null);
+    const headerRef = useRef<HTMLDivElement | null>(null);
+
+    const [canvasMode, setCanvasMode] = useState(false);
+    const [hovering, setHovering] = useState(false);
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const [footerVisible, setFooterVisible] = useState(false);
+    const footerRef = useRef<HTMLElement>(null);
+
+    const playTrack = () => {
+        if (trackRef.current) {
+            trackRef.current.play().catch((err) => {
+                console.error("Audio playback failed:", err);
+            });
+        }
+    };
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && canvasMode) {
+                setCanvasMode(false);
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [canvasMode]);
+
+    useEffect(() => {
+    }, []);
+
+    useEffect(() => {
+        if (!footerRef.current) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => setFooterVisible(entry.isIntersecting),
+            { threshold: 0.1 }
+        );
+        observer.observe(footerRef.current);
+        return () => observer.disconnect();
+    }, []);
+
+    const handleBgDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        const target = e.target as Node;
+        if (leftRef.current?.contains(target)) return;
+        if (rightRef.current?.contains(target)) return;
+        if (menuRef.current?.contains(target)) return;
+        setCanvasMode(true);
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (canvasMode) return;
+        setMousePos({ x: e.clientX, y: e.clientY });
+        const target = e.target as Node;
+        const overContent =
+            leftRef.current?.contains(target) ||
+            rightRef.current?.contains(target) ||
+            menuRef.current?.contains(target) ||
+            headerRef.current?.contains(target);
+        setHovering(!overContent);
+    };
+
+    return (
+        <div className="main-div bg-(--bg-main) min-h-screen">
+            <div
+                onDoubleClick={handleBgDoubleClick}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={() => setHovering(false)}
+            >
+            <div ref={headerRef} className="flex flex-row justify-between items-center px-8 py-4 font-is animate-fade-in">
+                <p className="loc">New York City, USA</p>
+                <p className="loc text-center">
+                    <span className="group relative inline-flex items-center gap-1.5 cursor-pointer" onClick={playTrack}>
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                        </span>
+                        <span className="underline-slide">Anirudh Chandrasekaran</span>
+                        <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap font-inter text-xs px-2 py-1 rounded-md text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" style={{ background: "#d94e0f" }}>
+                            click to hear pronunciation
+                        </span>
+                    </span>
+                    {" | Product Engineer"}
+                </p>
+                <p className="flex items-center justify-end gap-2">
+                    <span className="relative flex h-2 w-2">
+                        <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-emerald-500 opacity-60"></span>
+                        <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+                    </span>
+                    Open to Work
+                </p>
+            </div>
+
+            <div className="flex flex-row my-25">
+                <div
+                    ref={leftRef}
+                    className={`w-[50%] h-full px-20 justify-end flex transition-transform duration-700 ease-in-out animate-fade-up ${canvasMode ? "-translate-x-[110%]" : "translate-x-0"}`}
+                    style={{ animationDelay: "100ms" }}
+                >
+                    <CardStack images={[img1, img2, img3, img4, img5]}/>
+                </div>
+                <div
+                    className={`w-[50%] h-100 justify-start py-10 transition-transform duration-700 ease-in-out animate-fade-up ${canvasMode ? "translate-x-[110%]" : "translate-x-0"}`}
+                    style={{ animationDelay: "250ms" }}
+                >
+                    <div ref={rightRef} className="inline-flex flex-col">
+                        <p className="w-85 font-is text-4xl font-boldtext-left">Product Engineer.</p>
+                        <p className="w-85 font-inter text-md text-left font-light">I build scalable applications and the systems that keep them running.</p>
+                        <p className="w-85 font-inter text-md text-left mt-5 font-light">I also pay attention to the small details that make software feel good to use.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                ref={menuRef}
+                className={`fixed bottom-14 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-500 ${canvasMode || footerVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            >
+                <MenuButton />
+            </div>
+
+            <p className={`w-full text-center font-inter text-xs animate-slide mt-6 transition-opacity duration-500 ${canvasMode ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                scroll down to continue
+            </p>
+            </div>
+
+            {/* Canvas overlay */}
+            <div className={`fixed inset-0 z-40 transition-opacity duration-700 ${canvasMode ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+                <Canvas />
+            </div>
+
+            {/* Background hover tooltip */}
+            <span
+                className={`fixed whitespace-nowrap font-inter text-xs px-2 py-1 rounded-md text-white pointer-events-none transition-opacity duration-200 z-60 ${hovering && !canvasMode ? "opacity-100" : "opacity-0"}`}
+                style={{ background: "#d94e0f", left: mousePos.x, top: mousePos.y + 16 }}
+            >
+                Double click to activate canvas
+            </span>
+
+            <audio ref={trackRef} src={audioSrc} preload="auto"/>
+
+            <About />
+            <WorkExperience />
+            <WorkProjects />
+            <Contact />
+            <Footer ref={footerRef} />
+        </div>
+    );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+root.render(<App />);

@@ -1,25 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Headline:wght@200..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
-@import "tailwindcss";
-@theme{
-    --font-stack: 'Stack Sans Headline', sans-serif;
-    --font-gsf: 'Google Sans Flex', sans-serif;
-}
-@custom-variant dark (
-    &:where(.dark, .dark *)
-);
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+    @import "tailwindcss";
+
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    @theme{
+        --font-is : 'Instrument Serif', serif;
+        --font-inter: 'Inter', sans-serif;
+        --bg-main: #FFF1E9;
+        --accent-main: #F4811D;
+        --animate-ping-slow: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        --animate-slide: slide 3.5s ease-in-out infinite;
+        --animate-fade-in: fadeIn 0.55s ease-out both;
+        --animate-fade-up: fadeUp 0.65s ease-out both;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; translate: 0 20px; }
+            to   { opacity: 1; translate: 0 0px;  }
+        }
+        @keyframes slide{
+            0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+            50% {
+            transform: translateY(10px);
+            opacity: 0.5;
+        }
+            100% {
+            transform: translateY(0);
+            opacity: 1;}
+        }
     }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    @keyframes shineFill {
+        from { width: 0%; }
+        to { width: 100%; }
     }
-}
 
-.animate-fadeIn {
-    animation: fadeIn 0.8s ease-out forwards;
-}
+
+
+    .underline-slide {
+        background: linear-gradient(currentColor, currentColor) no-repeat left bottom;
+        background-size: 0% 1px;
+        transition: background-size 0.4s ease;
+    }
+
+    .group:hover .underline-slide {
+        background-size: 100% 1px;
+    }
