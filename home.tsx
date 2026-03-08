@@ -61,6 +61,7 @@ const App = () => {
     }, []);
 
     const handleBgDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (window.innerWidth < 768) return;
         const target = e.target as Node;
         if (leftRef.current?.contains(target)) return;
         if (rightRef.current?.contains(target)) return;
