@@ -87,9 +87,9 @@ const App = () => {
                 onMouseMove={handleMouseMove}
                 onMouseLeave={() => setHovering(false)}
             >
-            <div ref={headerRef} className="flex flex-row justify-between items-center px-8 py-4 font-is animate-fade-in">
-                <p className="loc">New York City, USA</p>
-                <p className="loc text-center">
+            <div ref={headerRef} className="flex flex-col sm:flex-row justify-between items-center px-4 md:px-8 py-4 gap-1 sm:gap-0 font-is animate-fade-in">
+                <p className="loc text-sm sm:text-base">New York City, USA</p>
+                <p className="loc text-center text-sm sm:text-base">
                     <span className="group relative inline-flex items-center gap-1.5 cursor-pointer" onClick={playTrack}>
                         <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -104,7 +104,7 @@ const App = () => {
                     </span>
                     {" | Product Engineer"}
                 </p>
-                <p className="flex items-center justify-end gap-2">
+                <p className="flex items-center justify-end gap-2 text-sm sm:text-base">
                     <span className="relative flex h-2 w-2">
                         <span className="absolute inline-flex h-full w-full animate-ping-slow rounded-full bg-emerald-500 opacity-60"></span>
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
@@ -113,29 +113,29 @@ const App = () => {
                 </p>
             </div>
 
-            <div className="flex flex-row my-25">
+            <div className="flex flex-col md:flex-row my-10 md:my-25 gap-6 md:gap-0">
                 <div
                     ref={leftRef}
-                    className={`w-[50%] h-full px-20 justify-end flex transition-transform duration-700 ease-in-out animate-fade-up ${canvasMode ? "-translate-x-[110%]" : "translate-x-0"}`}
+                    className={`w-full md:w-[50%] h-full px-8 md:px-20 flex justify-center md:justify-end transition-transform duration-700 ease-in-out animate-fade-up ${canvasMode ? "md:-translate-x-[110%]" : "translate-x-0"}`}
                     style={{ animationDelay: "100ms" }}
                 >
                     <CardStack images={[img1, img2, img3, img4, img5]}/>
                 </div>
                 <div
-                    className={`w-[50%] h-100 justify-start py-10 transition-transform duration-700 ease-in-out animate-fade-up ${canvasMode ? "translate-x-[110%]" : "translate-x-0"}`}
+                    className={`w-full md:w-[50%] md:h-100 flex justify-center md:justify-start py-4 md:py-10 px-4 md:px-0 transition-transform duration-700 ease-in-out animate-fade-up ${canvasMode ? "md:translate-x-[110%]" : "translate-x-0"}`}
                     style={{ animationDelay: "250ms" }}
                 >
                     <div ref={rightRef} className="inline-flex flex-col">
-                        <p className="w-85 font-is text-4xl font-boldtext-left">Product Engineer.</p>
-                        <p className="w-85 font-inter text-md text-left font-light">I build scalable applications and the systems that keep them running.</p>
-                        <p className="w-85 font-inter text-md text-left mt-5 font-light">I also pay attention to the small details that make software feel good to use.</p>
+                        <p className="w-full md:w-85 font-is text-3xl md:text-4xl font-boldtext-left">Product Engineer.</p>
+                        <p className="w-full md:w-85 font-inter text-md text-left font-light">I build scalable applications and the systems that keep them running.</p>
+                        <p className="w-full md:w-85 font-inter text-md text-left mt-5 font-light">I also pay attention to the small details that make software feel good to use.</p>
                     </div>
                 </div>
             </div>
 
             <div
                 ref={menuRef}
-                className={`fixed bottom-14 left-1/2 -translate-x-1/2 z-50 transition-opacity duration-500 ${canvasMode || footerVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+                className={`fixed bottom-6 right-4 md:bottom-14 md:left-1/2 md:right-auto md:-translate-x-1/2 z-50 transition-opacity duration-500 ${canvasMode || footerVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}
             >
                 <MenuButton />
             </div>
@@ -150,9 +150,9 @@ const App = () => {
                 <Canvas />
             </div>
 
-            {/* Background hover tooltip */}
+            {/* Background hover tooltip — desktop only */}
             <span
-                className={`fixed whitespace-nowrap font-inter text-xs px-2 py-1 rounded-md text-white pointer-events-none transition-opacity duration-200 z-60 ${hovering && !canvasMode ? "opacity-100" : "opacity-0"}`}
+                className={`fixed hidden md:inline whitespace-nowrap font-inter text-xs px-2 py-1 rounded-md text-white pointer-events-none transition-opacity duration-200 z-60 ${hovering && !canvasMode ? "opacity-100" : "opacity-0"}`}
                 style={{ background: "#d94e0f", left: mousePos.x, top: mousePos.y + 16 }}
             >
                 Double click to activate canvas

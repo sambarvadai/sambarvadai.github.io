@@ -147,7 +147,7 @@ const SportsCell = () => {
     }, []);
 
     return (
-        <div className={`${CELL} col-span-2`} style={DARK}>
+        <div className={`${CELL} col-span-1 sm:col-span-2`} style={DARK}>
             <div className="flex justify-between items-center">
                 <span className="text-xs font-inter text-white/60 uppercase tracking-wide">things I'm waiting for</span>
                 <div className="flex gap-1.5">
@@ -261,10 +261,10 @@ const SpotifyCell = () => {
 
 // --- About Section ---
 const About = () => (
-    <section id="about" className="px-20 py-24 flex flex-row gap-16 items-start">
+    <section id="about" className="px-4 md:px-20 py-12 md:py-24 flex flex-col md:flex-row gap-8 md:gap-16 items-start">
         {/* Left: Prose */}
-        <div className="w-[45%] flex flex-col gap-5">
-            <h2 className="font-is text-5xl">About me.</h2>
+        <div className="w-full md:w-[45%] flex flex-col gap-5">
+            <h2 className="font-is text-4xl md:text-5xl">About me.</h2>
             <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
                 I'm a product engineer based in New York City. I care about building things that work well and feel good to use — from the architecture underneath to the interactions on the surface.
             </p>
@@ -277,7 +277,7 @@ const About = () => (
         </div>
 
         {/* Right: Bento */}
-        <div className="w-[55%] grid grid-cols-2 gap-3">
+        <div className="w-full md:w-[55%] grid grid-cols-1 sm:grid-cols-2 gap-3">
             <ClockCell />
             <GitHubCell />
             <SportsCell />

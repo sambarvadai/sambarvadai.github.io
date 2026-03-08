@@ -19,6 +19,10 @@ const CARD_STYLE: React.CSSProperties = {
     padding: "3rem",
 };
 
+const INPUT_STYLE: React.CSSProperties = {
+    border: "1px solid rgba(255,255,255,0.1)",
+};
+
 const Contact = () => {
     const cardRef = useRef<HTMLDivElement>(null);
     const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -27,17 +31,27 @@ const Contact = () => {
     const [flipped, setFlipped] = useState(false);
     const [sent, setSent] = useState(false);
     const [form, setForm] = useState({ email: "", subject: "", message: "" });
+    const [sending, setSending] = useState(false);
+    const [error, setError] = useState("");
+    const [isMobile, setIsMobile] = useState(false);
     const emailInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768);
+        check();
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
+
+    useEffect(() => {
         if (flipped) {
-            const t = setTimeout(() => emailInputRef.current?.focus(), 680);
+            const t = setTimeout(() => emailInputRef.current?.focus(), isMobile ? 50 : 680);
             return () => clearTimeout(t);
         }
-    }, [flipped]);
+    }, [flipped, isMobile]);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (flipped) return;
+        if (flipped || isMobile) return;
         const card = cardRef.current;
         if (!card) return;
         const rect = card.getBoundingClientRect();
@@ -60,9 +74,6 @@ const Contact = () => {
         setActive(false);
     };
 
-    const [sending, setSending] = useState(false);
-    const [error, setError] = useState("");
-
     const handleSend = async (e: React.FormEvent) => {
         e.preventDefault();
         setSending(true);
@@ -82,10 +93,134 @@ const Contact = () => {
         }
     };
 
-    const INPUT_STYLE: React.CSSProperties = {
-        border: "1px solid rgba(255,255,255,0.1)",
-    };
+    // --- Mobile layout: no 3D, just toggle front/back ---
+    if (isMobile) {
+        return (
+            <section id="contact" className="px-4 py-12 flex flex-col items-center">
+                <div
+                    className="w-full rounded-3xl overflow-hidden"
+                    style={{ background: "#1C1C1E", border: "1px solid rgba(255,255,255,0.07)" }}
+                >
+                    {!flipped ? (
+                        <div className="p-8 flex flex-col gap-6">
+                            <div className="flex flex-col gap-3">
+                                <p className="font-is text-3xl text-white">Let's build something</p>
+                                <p className="font-inter text-sm text-white/50 font-light leading-relaxed">
+                                    Open to collaborations, full-time roles, and interesting conversations.
+                                </p>
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <a
+                                    href="mailto:anirudh@sambarvadai.dev"
+                                    className="font-inter text-sm text-white/80 hover:text-white transition-colors"
+                                >
+                                    anirudh@sambarvadai.dev
+                                </a>
+                                <div className="flex gap-4 flex-wrap">
+                                    {[
+                                        { label: "GitHub",   href: "https://github.com/sambarvadai" },
+                                        { label: "LinkedIn", href: "https://linkedin.com/in/anicsekaran" },
+                                        { label: "Dribbble", href: "https://dribbble.com/sambarvadai" },
+                                        { label: "Leetcode", href: "https://leetcode.com/sambarvadai" },
+                                    ].map(link => (
+                                        <a
+                                            key={link.label}
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="font-inter text-xs text-white/40 hover:text-white/80 transition-colors"
+                                        >
+                                            {link.label} ↗
+                                        </a>
+                                    ))}
+                                </div>
+                                <button
+                                    onClick={handleFlip}
+                                    className="font-inter text-sm px-4 py-2 rounded-full cursor-pointer transition-opacity hover:opacity-80 text-white w-fit"
+                                    style={{ background: "#d94e0f" }}
+                                >
+                                    Write to me →
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="p-8 flex flex-col gap-5">
+                            {sent ? (
+                                <>
+                                    <div className="flex flex-col gap-2">
+                                        <p className="font-is text-3xl text-white">Sent.</p>
+                                        <p className="font-inter text-sm text-white/50">I'll get back to you soon.</p>
+                                    </div>
+                                    <button
+                                        onClick={() => { setFlipped(false); setSent(false); setForm({ email: "", subject: "", message: "" }); }}
+                                        className="font-inter text-xs text-white/40 hover:text-white/60 transition-colors text-left w-fit cursor-pointer"
+                                    >
+                                        ← back
+                                    </button>
+                                </>
+                            ) : (
+                                <form onSubmit={handleSend} className="flex flex-col gap-4">
+                                    <div className="flex justify-between items-center">
+                                        <p className="font-is text-2xl text-white">Drop a line.</p>
+                                        <button
+                                            type="button"
+                                            onClick={handleFlip}
+                                            className="font-inter text-xs text-white/40 hover:text-white/60 transition-colors cursor-pointer"
+                                        >
+                                            ← back
+                                        </button>
+                                    </div>
+                                    <div className="flex flex-col gap-2.5">
+                                        <input
+                                            ref={emailInputRef}
+                                            type="email"
+                                            required
+                                            placeholder="your@email.com"
+                                            value={form.email}
+                                            onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                                            className="w-full font-inter text-sm text-white bg-transparent rounded-xl px-3 py-2 outline-none placeholder-white/20"
+                                            style={INPUT_STYLE}
+                                        />
+                                        <input
+                                            type="text"
+                                            required
+                                            placeholder="Subject"
+                                            value={form.subject}
+                                            onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
+                                            className="w-full font-inter text-sm text-white bg-transparent rounded-xl px-3 py-2 outline-none placeholder-white/20"
+                                            style={INPUT_STYLE}
+                                        />
+                                        <textarea
+                                            required
+                                            placeholder="What's on your mind?"
+                                            rows={3}
+                                            value={form.message}
+                                            onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                                            className="w-full font-inter text-sm text-white bg-transparent rounded-xl px-3 py-2 outline-none resize-none placeholder-white/20"
+                                            style={INPUT_STYLE}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col items-end gap-1.5">
+                                        {error && <p className="font-inter text-xs text-red-400">{error}</p>}
+                                        <button
+                                            type="submit"
+                                            disabled={sending}
+                                            className="font-inter text-sm px-5 py-2 rounded-full cursor-pointer text-white transition-opacity hover:opacity-80 disabled:opacity-50"
+                                            style={{ background: "#d94e0f" }}
+                                        >
+                                            {sending ? "Sending..." : "Send"}
+                                        </button>
+                                    </div>
+                                </form>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </section>
+        );
+    }
 
+    // --- Desktop layout: full 3D tilt + flip ---
     return (
         <section id="contact" className="px-20 py-24 flex flex-col items-center">
             <div

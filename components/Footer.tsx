@@ -1,9 +1,9 @@
 import React from "react";
 
 const Footer = React.forwardRef<HTMLElement>((_, ref) => (
-    <footer ref={ref} className="w-full px-20 py-6 flex flex-row justify-between items-center relative" style={{ background: "#0a0a0a" }}>
+    <footer ref={ref} className="w-full px-4 md:px-20 py-6 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 relative" style={{ background: "#0a0a0a" }}>
         <p className="font-is text-white/80 text-lg">Anirudh Chandrasekaran</p>
-        <div className="absolute left-1/2 -translate-x-1/2 flex gap-6">
+        <div className="flex gap-6 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
             {[
                 { label: "About",   href: "#about" },
                 { label: "Work",    href: "#work" },

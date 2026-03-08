@@ -33,11 +33,11 @@ const ExternalIcon = () => (
 );
 
 const WorkProjects = () => (
-    <section className="px-20 py-8 pb-24">
-        <div className="flex flex-row gap-12 items-start">
+    <section className="px-4 md:px-20 py-6 md:py-8 pb-12 md:pb-24">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-start">
             {/* Left: Design */}
             <div
-                className="w-[40%] rounded-2xl p-8 flex flex-col gap-4 min-h-80 items-start justify-between"
+                className="w-full md:w-[40%] rounded-2xl p-8 flex flex-col gap-4 min-h-80 items-start justify-between"
                 style={{ background: "#1C1C1E", border: "1px solid rgba(255,255,255,0.06)" }}
             >
                 <span className="font-inter text-xs text-white/40 uppercase tracking-wide">Design Work</span>
@@ -51,7 +51,7 @@ const WorkProjects = () => (
             </div>
 
             {/* Right: Technical Projects */}
-            <div className="w-[60%] flex flex-col gap-4">
+            <div className="w-full md:w-[60%] flex flex-col gap-4">
                 <span className="font-inter text-xs text-neutral-400 uppercase tracking-wide mb-1">Technical Projects</span>
                 {projects.map((p, i) => (
                     <div

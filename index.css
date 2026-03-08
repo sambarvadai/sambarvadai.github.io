@@ -53,3 +53,26 @@
     .group:hover .underline-slide {
         background-size: 100% 1px;
     }
+
+/* Mobile: flatten card stack, hide the deeply buried cards */
+@media (max-width: 767px) {
+    .card-stack-item:nth-child(1),
+    .card-stack-item:nth-child(2) {
+        display: none;
+    }
+    .card-stack-item:nth-child(3) {
+        transform: translateY(8px) scale(0.96) !important;
+        opacity: 0.55;
+    }
+    .card-stack-item:nth-child(4) {
+        transform: translateY(4px) scale(0.98) !important;
+        opacity: 0.78;
+    }
+    .card-stack-item:nth-child(5) {
+        transform: none !important;
+    }
+    .card-stack-item:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+}
