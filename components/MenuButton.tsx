@@ -42,7 +42,7 @@ const MenuButton = () => {
         timerRef.current = setTimeout(() => {
             setIsOpen(true);
             setPressing(false);
-        }, 1500);
+        }, 750);
     };
 
     const cancelPress = () => {
@@ -127,7 +127,7 @@ const MenuButton = () => {
                         className="absolute inset-y-0 left-0"
                         style={{
                             background: "rgba(255, 255, 255, 0.3)",
-                            animation: "shineFill 1.5s linear forwards",
+                            animation: "shineFill 0.75s linear forwards",
                         }}
                     />
                 )}
