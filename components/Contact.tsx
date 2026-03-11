@@ -243,6 +243,7 @@ const Contact = () => {
                         width: "100%",
                         height: "100%",
                         transformStyle: "preserve-3d",
+                        WebkitTransformStyle: "preserve-3d",
                         transform: `rotateY(${flipped ? 180 : 0}deg)`,
                         transition: "transform 0.65s cubic-bezier(0.4, 0, 0.2, 1)",
                     }}
