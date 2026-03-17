@@ -37,10 +37,10 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
         totalKeysRef.current = 0;
         correctKeysRef.current = 0;
 
-        fetch("https://api.quotable.io/random?minLength=60&maxLength=120")
+        fetch("https://dummyjson.com/quotes/random")
             .then(r => r.json())
             .then(d => {
-                setSentence(d.content.trim());
+                setSentence(d.quote.trim());
                 setAuthor(d.author);
             })
             .catch(() => {
