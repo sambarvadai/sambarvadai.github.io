@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const sentences = [
+const fallback = [
     "ship it, fix it later, apologize in the standup",
     "the best code is the code you never had to write",
     "coffee goes in and code comes out, nobody knows how",
@@ -18,7 +18,9 @@ const verdict = (wpm: number) => {
 };
 
 const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
-    const [sentence] = useState(() => sentences[Math.floor(Math.random() * sentences.length)]);
+    const [sentence, setSentence] = useState("");
+    const [author, setAuthor] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
     const [typed, setTyped] = useState("");
     const [result, setResult] = useState<{ wpm: number; accuracy: number } | null>(null);
     const typedRef = useRef("");
@@ -26,14 +28,36 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
     const totalKeysRef = useRef(0);
     const correctKeysRef = useRef(0);
 
-    useEffect(() => {
+    const fetchSentence = () => {
+        setLoading(true);
+        setTyped("");
+        setResult(null);
         typedRef.current = "";
         startTimeRef.current = null;
         totalKeysRef.current = 0;
         correctKeysRef.current = 0;
-    }, [sentence]);
+
+        fetch("https://api.quotable.io/random?minLength=60&maxLength=120")
+            .then(r => r.json())
+            .then(d => {
+                setSentence(d.content.trim());
+                setAuthor(d.author);
+            })
+            .catch(() => {
+                const s = fallback[Math.floor(Math.random() * fallback.length)];
+                setSentence(s);
+                setAuthor(null);
+            })
+            .finally(() => setLoading(false));
+    };
 
     useEffect(() => {
+        fetchSentence();
+    }, []);
+
+    useEffect(() => {
+        if (!sentence) return;
+
         const handle = (e: KeyboardEvent) => {
             if (result) return;
             if (e.key === "Escape") { onClose(); return; }
@@ -70,15 +94,6 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
         return () => window.removeEventListener("keydown", handle);
     }, [result, onClose, sentence]);
 
-    const reset = () => {
-        typedRef.current = "";
-        startTimeRef.current = null;
-        totalKeysRef.current = 0;
-        correctKeysRef.current = 0;
-        setTyped("");
-        setResult(null);
-    };
-
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center" style={{ background: "#FFF1E9" }}>
             <div className="max-w-2xl w-full px-8 flex flex-col gap-6">
@@ -87,7 +102,14 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
                     <span className="font-inter text-xs text-neutral-400">esc to exit</span>
                 </div>
 
-                {!result ? (
+                {loading ? (
+                    <div className="p-5 rounded-2xl bg-white/60 border border-neutral-200/70 flex items-center justify-center h-24">
+                        <span
+                            className="w-4 h-4 rounded-full border-2 border-transparent"
+                            style={{ borderTopColor: "#d94e0f", animation: "spin 0.7s linear infinite" }}
+                        />
+                    </div>
+                ) : !result ? (
                     <>
                         <div className="font-mono text-base leading-relaxed tracking-wide select-none p-5 rounded-2xl bg-white/60 border border-neutral-200/70">
                             {sentence.split("").map((char, i) => {
@@ -106,9 +128,14 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
                                 );
                             })}
                         </div>
-                        <p className="font-inter text-xs text-neutral-400">
-                            {typed.length === 0 ? "start typing to begin..." : `${typed.length} / ${sentence.length}`}
-                        </p>
+                        <div className="flex justify-between items-center">
+                            <p className="font-inter text-xs text-neutral-400">
+                                {typed.length === 0 ? "start typing to begin..." : `${typed.length} / ${sentence.length}`}
+                            </p>
+                            {author && (
+                                <p className="font-inter text-xs text-neutral-300 italic">{author}</p>
+                            )}
+                        </div>
                     </>
                 ) : (
                     <div className="flex flex-col gap-4 p-5 rounded-2xl bg-white/60 border border-neutral-200/70">
@@ -123,7 +150,7 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
                             <button
                                 className="font-inter text-sm px-4 py-2 rounded-full cursor-pointer hover:opacity-80 transition-opacity"
                                 style={{ background: "#d94e0f", color: "white" }}
-                                onClick={reset}
+                                onClick={fetchSentence}
                             >
                                 try again
                             </button>
