@@ -115,6 +115,7 @@ const App = () => {
             <div ref={headerRef} className="flex flex-col sm:flex-row justify-between items-center px-4 md:px-8 py-4 gap-1 sm:gap-0 font-is animate-fade-in">
                 <p className="loc text-sm sm:text-base">New York City, USA</p>
                 <p className="loc text-center text-sm sm:text-base">
+                    <span className="inline-flex items-center gap-1">
                     <span className="group relative inline-flex items-center gap-1.5 cursor-pointer" onClick={playTrack}>
                         <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -127,7 +128,8 @@ const App = () => {
                             click to hear pronunciation
                         </span>
                     </span>
-                    {" | Product Engineer"}
+                    <span>{" | Product Engineer"}</span>
+                    </span>
                 </p>
                 <p className="flex items-center justify-end gap-2 text-sm sm:text-base">
                     <span className="relative flex h-2 w-2">
