@@ -266,13 +266,19 @@ const About = () => (
         <div className="w-full md:w-[45%] flex flex-col gap-5">
             <h2 className="font-is text-4xl md:text-5xl">About me.</h2>
             <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
-                I'm a product engineer based in New York City. I care about building things that work well and feel good to use — from the architecture underneath to the interactions on the surface.
+                I'm a product engineer based in New York City. I care about building things that work well and feel good to use, from the architecture underneath to the interactions on the surface.
             </p>
             <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
-                I've worked across the stack — shipping features, designing systems, and debugging the things nobody else wanted to touch. I'm drawn to the intersection of engineering and product thinking.
+                I've worked across the stack, shipping features, designing systems, and debugging the things nobody else wanted to touch. I'm drawn to the intersection of engineering and product thinking.
             </p>
             <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
                 I can build scalable backends, craft clean UIs, and navigate everything in between. Currently expanding into mobile with React Native and Swift.
+            </p>
+            <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
+                I trust people to do their work. No check-ins every hour, no hand-holding unless you want it. That's how I like to be treated, and it's how I treat others.
+            </p>
+            <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
+                As for what I'm like to work with, I'd say mystery box. You never quite know what you're going to get, but it's usually worth it.
             </p>
         </div>
 

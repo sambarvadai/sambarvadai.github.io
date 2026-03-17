@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const menuItems = [
-    { label: "About",   href: "#about",                    external: false },
-    { label: "Work",    href: "#work",                     external: false },
-    { label: "Contact", href: "#contact",                  external: false },
-    { label: "Blog",    href: "https://blog.sambarvadai.dev", external: true },
+    { label: "About",    href: "#about",                       external: false },
+    { label: "Work",     href: "#work",                        external: false },
+    { label: "Services", href: "#services",                    external: false },
+    { label: "Contact",  href: "#contact",                     external: false },
+    { label: "Blog",     href: "https://blog.sambarvadai.dev", external: true },
 ];
 
 const pillStyle: React.CSSProperties = {

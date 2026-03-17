@@ -5,10 +5,11 @@ const Footer = React.forwardRef<HTMLElement>((_, ref) => (
         <p className="font-is text-white/80 text-lg">Anirudh Chandrasekaran</p>
         <div className="flex gap-6 sm:absolute sm:left-1/2 sm:-translate-x-1/2">
             {[
-                { label: "About",   href: "#about" },
-                { label: "Work",    href: "#work" },
-                { label: "Blog",    href: "https://blog.sambarvadai.dev", external: true },
-                { label: "Contact", href: "#contact" },
+                { label: "About",    href: "#about" },
+                { label: "Work",     href: "#work" },
+                { label: "Services", href: "#services" },
+                { label: "Blog",     href: "https://blog.sambarvadai.dev", external: true },
+                { label: "Contact",  href: "#contact" },
             ].map(link => (
                 <a
                     key={link.label}

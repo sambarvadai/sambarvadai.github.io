@@ -7,7 +7,10 @@ import About from "./components/About";
 import WorkExperience from "./components/WorkExperience";
 import WorkProjects from "./components/WorkProjects";
 import Contact from "./components/Contact";
+import Services from "./components/Services";
 import Footer from "./components/Footer";
+import LofiPlayer from "./components/LofiPlayer";
+import TypingChallenge from "./components/TypingChallenge";
 
 const img1 = new URL("./assets/img1.png", import.meta.url).href;
 const img2 = new URL("./assets/img2.png", import.meta.url).href;
@@ -25,6 +28,8 @@ const App = () => {
 
     const [canvasMode, setCanvasMode] = useState(false);
     const [hovering, setHovering] = useState(false);
+    const [showTyping, setShowTyping] = useState(false);
+    const [eggHint, setEggHint] = useState<"hidden" | "visible" | "gone">("hidden");
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const [footerVisible, setFooterVisible] = useState(false);
     const footerRef = useRef<HTMLElement>(null);
@@ -48,7 +53,26 @@ const App = () => {
     }, [canvasMode]);
 
     useEffect(() => {
-    }, []);
+        if (showTyping) return;
+        const show = setTimeout(() => {
+            setEggHint("visible");
+            setTimeout(() => setEggHint("gone"), 4000);
+        }, 8000);
+        return () => clearTimeout(show);
+    }, [showTyping]);
+
+    useEffect(() => {
+        let buffer = "";
+        const handle = (e: KeyboardEvent) => {
+            if (showTyping || canvasMode) return;
+            if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+            buffer += e.key.toLowerCase();
+            buffer = buffer.slice(-4);
+            if (buffer === "type") setShowTyping(true);
+        };
+        window.addEventListener("keydown", handle);
+        return () => window.removeEventListener("keydown", handle);
+    }, [showTyping, canvasMode]);
 
     useEffect(() => {
         if (!footerRef.current) return;
@@ -146,6 +170,23 @@ const App = () => {
             </p>
             </div>
 
+            {/* Lofi player — fixed bottom-left */}
+            <div className={`fixed bottom-6 left-4 md:bottom-14 md:left-8 z-50 transition-opacity duration-500 ${canvasMode || footerVisible ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                <LofiPlayer />
+            </div>
+
+            {/* Easter egg hint — fades in once after 8s idle, gone after 4s */}
+            <span
+                className="fixed bottom-16 left-4 md:bottom-24 md:left-8 z-50 font-inter text-xs px-3 py-1.5 rounded-full pointer-events-none transition-opacity duration-700"
+                style={{
+                    background: "rgba(0,0,0,0.06)",
+                    color: "#999",
+                    opacity: eggHint === "visible" ? 1 : 0,
+                }}
+            >
+                psst... try typing <span style={{ color: "#d94e0f" }}>type</span>
+            </span>
+
             {/* Canvas overlay */}
             <div className={`fixed inset-0 z-40 transition-opacity duration-700 ${canvasMode ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
                 <Canvas />
@@ -161,9 +202,13 @@ const App = () => {
 
             <audio ref={trackRef} src={audioSrc} preload="auto"/>
 
+            {/* Typing challenge easter egg — trigger by typing "type" anywhere */}
+            {showTyping && <TypingChallenge onClose={() => setShowTyping(false)} />}
+
             <About />
             <WorkExperience />
             <WorkProjects />
+            <Services />
             <Contact />
             <Footer ref={footerRef} />
         </div>

@@ -1,5 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
+const ALLOWED_ORIGIN = "https://sambarvadai.dev";
+
 async function getAccessToken(): Promise<string> {
     const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } = process.env;
 
@@ -16,7 +18,15 @@ async function getAccessToken(): Promise<string> {
     return data.access_token;
 }
 
-export default async function handler(_req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+    const origin = req.headers.origin;
+    if (origin === ALLOWED_ORIGIN) {
+        res.setHeader("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
+    }
+    res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+
+    if (req.method === "OPTIONS") return res.status(204).end();
+
     try {
         const token = await getAccessToken();
 
