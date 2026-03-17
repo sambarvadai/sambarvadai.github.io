@@ -23,10 +23,14 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
     const [result, setResult] = useState<{ wpm: number; accuracy: number } | null>(null);
     const typedRef = useRef("");
     const startTimeRef = useRef<number | null>(null);
+    const totalKeysRef = useRef(0);
+    const correctKeysRef = useRef(0);
 
     useEffect(() => {
         typedRef.current = "";
         startTimeRef.current = null;
+        totalKeysRef.current = 0;
+        correctKeysRef.current = 0;
     }, [sentence]);
 
     useEffect(() => {
@@ -34,26 +38,30 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
             if (result) return;
             if (e.key === "Escape") { onClose(); return; }
 
+            if (e.key === "Backspace") {
+                typedRef.current = typedRef.current.slice(0, -1);
+                setTyped(typedRef.current);
+                return;
+            }
 
             if (e.key.length !== 1) return;
 
             const pos = typedRef.current.length;
             if (pos >= sentence.length) return;
 
-            // Only accept the correct character — wrong keys are ignored
-            if (e.key !== sentence[pos]) return;
-
             if (!startTimeRef.current) startTimeRef.current = Date.now();
+
+            totalKeysRef.current += 1;
+            if (e.key === sentence[pos]) correctKeysRef.current += 1;
 
             typedRef.current = typedRef.current + e.key;
             setTyped(typedRef.current);
 
-            if (typedRef.current === sentence) {
+            if (typedRef.current.length === sentence.length) {
                 const elapsed = Math.max((Date.now() - startTimeRef.current!) / 1000 / 60, 0.001);
                 const words = sentence.trim().split(/\s+/).length;
                 const wpm = Math.round(words / elapsed);
-                const correct = typedRef.current.split("").filter((c, i) => c === sentence[i]).length;
-                const accuracy = Math.round((correct / sentence.length) * 100);
+                const accuracy = Math.round((correctKeysRef.current / totalKeysRef.current) * 100);
                 setResult({ wpm, accuracy });
             }
         };
@@ -65,6 +73,8 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
     const reset = () => {
         typedRef.current = "";
         startTimeRef.current = null;
+        totalKeysRef.current = 0;
+        correctKeysRef.current = 0;
         setTyped("");
         setResult(null);
     };
@@ -80,15 +90,21 @@ const TypingChallenge = ({ onClose }: { onClose: () => void }) => {
                 {!result ? (
                     <>
                         <div className="font-mono text-base leading-relaxed tracking-wide select-none p-5 rounded-2xl bg-white/60 border border-neutral-200/70">
-                            {sentence.split("").map((char, i) => (
-                                <span
-                                    key={i}
-                                    className={i < typed.length ? "text-neutral-900" : "text-neutral-300"}
-                                    style={i === typed.length ? { borderLeft: "2px solid #1a1a1a" } : {}}
-                                >
-                                    {char}
-                                </span>
-                            ))}
+                            {sentence.split("").map((char, i) => {
+                                let color = "text-neutral-300";
+                                if (i < typed.length) {
+                                    color = typed[i] === char ? "text-neutral-900" : "text-red-400";
+                                }
+                                return (
+                                    <span
+                                        key={i}
+                                        className={color}
+                                        style={i === typed.length ? { borderLeft: "2px solid #1a1a1a" } : {}}
+                                    >
+                                        {char}
+                                    </span>
+                                );
+                            })}
                         </div>
                         <p className="font-inter text-xs text-neutral-400">
                             {typed.length === 0 ? "start typing to begin..." : `${typed.length} / ${sentence.length}`}

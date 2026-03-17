@@ -142,7 +142,7 @@ const MenuButton = () => {
             <div
                 className="flex items-center gap-3 overflow-hidden"
                 style={{
-                    maxWidth: isOpen ? "400px" : "0",
+                    maxWidth: isOpen ? "520px" : "0",
                     marginLeft: isOpen ? "12px" : "0",
                     transition: "max-width 0.5s ease, margin-left 0.5s ease",
                 }}
