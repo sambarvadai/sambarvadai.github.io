@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anirudh Chandrasekaran — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #e2cfc4;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px 48px;
+      min-height: 100vh;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .print-btn {
+      margin-bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #d94e0f;
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: 0.2px;
+      box-shadow: 0 2px 8px rgba(217,78,15,0.25);
+      transition: background 0.15s;
+    }
+    .print-btn:hover { background: #c04008; }
+
+    /* ── Page ── */
+    .page {
+      width: 816px;
+      height: 1056px;
+      background: #FFF1E9;
+      border-radius: 10px;
+      box-shadow: 0 6px 40px rgba(0,0,0,0.13);
+      padding: 34px 48px 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      padding-bottom: 12px;
+      border-bottom: 1.5px solid #d94e0f;
+      margin-bottom: 13px;
+      flex-shrink: 0;
+    }
+
+    .name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 30px;
+      color: #1a1a1a;
+      letter-spacing: -0.4px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .tagline {
+      font-size: 9px;
+      color: #666;
+      letter-spacing: 0.4px;
+      margin-bottom: 7px;
+    }
+
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(217,78,15,0.07);
+      border: 1px solid rgba(217,78,15,0.2);
+      border-radius: 999px;
+      padding: 2.5px 9px;
+      font-size: 8px;
+      color: #d94e0f;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 7px;
+      font-weight: 700;
+      color: #d94e0f;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0c9bc;
+    }
+
+    /* ── Skills ── */
+    .section {
+      margin-bottom: 11px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 20px;
+    }
+
+    .skill-group {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .skill-category {
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #1a1a1a;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .skill-category::after {
+      content: ':';
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+    }
+
+    .tag {
+      background: rgba(217,78,15,0.06);
+      border: 1px solid rgba(217,78,15,0.16);
+      border-radius: 999px;
+      padding: 1.5px 6px;
+      font-size: 7px;
+      color: #c0400e;
+      font-weight: 500;
+    }
+
+    /* ── Experience ── */
+    .exp-entry {
+      margin-bottom: 7px;
+      padding-left: 8px;
+      border-left: 2px solid rgba(217,78,15,0.2);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .exp-company {
+      font-size: 9px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .exp-date {
+      font-size: 7px;
+      color: #999;
+      white-space: nowrap;
+      margin-left: 6px;
+    }
+
+    .exp-sub {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+
+    .exp-title {
+      font-size: 8px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .exp-location {
+      font-size: 7px;
+      color: #aaa;
+    }
+
+    /* ── Projects ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.52);
+      border: 1px solid #e0c9bc;
+      border-radius: 8px;
+      padding: 7px 9px;
+    }
+
+    .project-title {
+      font-size: 8px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 1px;
+      line-height: 1.3;
+    }
+
+    .project-stack {
+      font-size: 7px;
+      color: #999;
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+
+    /* ── Education + Certs row ── */
+    .bottom-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 0;
+    }
+
+    .bottom-row > div {
+      flex: 1;
+    }
+
+    .edu-entry {
+      margin-bottom: 6px;
+    }
+
+    .edu-school {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.3;
+    }
+
+    .edu-degree {
+      font-size: 8px;
+      color: #555;
+      font-style: italic;
+    }
+
+    .edu-meta {
+      font-size: 7px;
+      color: #999;
+      margin-top: 1px;
+    }
+
+    .cert-tag {
+      display: inline-block;
+      background: rgba(217,78,15,0.06);
+      border: 1px solid rgba(217,78,15,0.16);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 7.5px;
+      color: #c0400e;
+      font-weight: 500;
+      margin-bottom: 4px;
+      margin-right: 4px;
+    }
+
+    /* ── Bullets ── */
+    .bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .bullets li {
+      font-size: 7.5px;
+      color: #333;
+      line-height: 1.5;
+      position: relative;
+      padding-left: 9px;
+      margin-bottom: 1px;
+    }
+
+    .bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 1px;
+      color: #d94e0f;
+      font-size: 11px;
+      line-height: 1.25;
+    }
+
+    /* ── Print ── */
+    @media print {
+      html {
+        width: 8.5in;
+        height: 11in;
+        background: #FFF1E9;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body {
+        width: 8.5in;
+        height: 11in;
+        background: #FFF1E9;
+        padding: 0;
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .print-btn { display: none; }
+
+      .page {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0.35in 0.5in 0.3in;
+      }
+
+      @page {
+        size: 8.5in 11in;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">⬇ Save as PDF</button>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="name">Anirudh Chandrasekaran</div>
+      <div class="tagline">Jersey City, NJ &nbsp;·&nbsp; Full Stack Developer &nbsp;·&nbsp; Frontend Engineer &nbsp;·&nbsp; AWS Certified Solutions Architect</div>
+      <div class="contact-row">
+        <a class="contact-pill" href="mailto:canirudh.work@gmail.com">✉ canirudh.work@gmail.com</a>
+        <a class="contact-pill" href="https://linkedin.com/in/anicsekaran">in&nbsp; linkedin.com/in/anicsekaran</a>
+        <a class="contact-pill" href="https://github.com/sambarvadai">⌥&nbsp; github.com/sambarvadai</a>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-label">Skills</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <span class="skill-category">Languages &amp; Frameworks</span>
+          <div class="tag-row">
+            <span class="tag">C++</span><span class="tag">Java</span><span class="tag">Python</span><span class="tag">JS/TS</span><span class="tag">HTML/CSS</span><span class="tag">SQL</span><span class="tag">CUDA</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-category">Frontend</span>
+          <div class="tag-row">
+            <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Stylus</span><span class="tag">D3.js</span><span class="tag">Jest</span><span class="tag">Responsive Design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-category">Backend</span>
+          <div class="tag-row">
+            <span class="tag">Node.js</span><span class="tag">Spring Boot</span><span class="tag">Express</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">GraphQL</span><span class="tag">REST API</span><span class="tag">Microservices</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-category">Cloud &amp; DevOps</span>
+          <div class="tag-row">
+            <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-category">ML &amp; AI</span>
+          <div class="tag-row">
+            <span class="tag">LLM Fine-Tuning</span><span class="tag">LLaMA</span><span class="tag">Gemini API</span><span class="tag">MCP</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="skill-category">Mobile</span>
+          <div class="tag-row">
+            <span class="tag">React Native</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-label">Experience</div>
+
+      <div class="exp-entry">
+        <div class="exp-header">
+          <span class="exp-company">Stony Brook University</span>
+          <span class="exp-date">Aug 2025 – Present</span>
+        </div>
+        <div class="exp-sub">
+          <span class="exp-title">Research Engineer · Graduate Research Assistant</span>
+          <span class="exp-location">Stony Brook, NY</span>
+        </div>
+        <ul class="bullets">
+          <li>Architecting a full-stack diabetes platform using Node.js, PostgreSQL, Webhooks, and AWS S3</li>
+          <li>Fine-tuning LLaMA 3.1 8B model using qLORA to reduce training time by 40% using a T4 GPU</li>
+          <li>Building a React based analytics dashboard for visualising patient health insights</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-header">
+          <span class="exp-company">Stony Brook University</span>
+          <span class="exp-date">Jan 2025 – May 2025</span>
+        </div>
+        <div class="exp-sub">
+          <span class="exp-title">Teaching Assistant</span>
+          <span class="exp-location">Stony Brook, NY</span>
+        </div>
+        <ul class="bullets">
+          <li>Led weekly MATLAB lab sessions and office hours for EEO 306 / ESE 306, supporting students on signal processing, simulation tasks, and code debugging</li>
+          <li>Graded assignments and midterms, and resolved student queries on forums by clarifying MATLAB syntax and logic</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-header">
+          <span class="exp-company">Stony Brook University — Blockchain Business Lab</span>
+          <span class="exp-date">Jun 2024 – Aug 2024</span>
+        </div>
+        <div class="exp-sub">
+          <span class="exp-title">Volunteer Researcher</span>
+          <span class="exp-location">Stony Brook, NY</span>
+        </div>
+        <ul class="bullets">
+          <li>Deployed Bitcoin Core node to sync and extract data from 800+ .blk files, enabling scalable blockchain analysis</li>
+          <li>Built Python parsing scripts processing 100,000+ transactions/file, transforming blockchain data into structured CSV for analysis</li>
+        </ul>
+      </div>
+
+      <div class="exp-entry">
+        <div class="exp-header">
+          <span class="exp-company">Unilever</span>
+          <span class="exp-date">Jul 2019 – Sep 2022</span>
+        </div>
+        <div class="exp-sub">
+          <span class="exp-title">Software Developer</span>
+          <span class="exp-location">Bengaluru, India</span>
+        </div>
+        <ul class="bullets">
+          <li>Developed JS and D3.js interactive dashboard to track website metrics in real time, improving reporting speed by 15%</li>
+          <li>Built scripts and integrated the fetched data to a D3.js based dashboard to track incident ticket metrics, improving incident response time by 25%</li>
+          <li>Designed and prototyped Unilever's Field Force App UI in Figma; collaborated with Android Development team to launch MVP in 4 weeks</li>
+          <li>Debugged transaction issues in SAP systems and implemented minor fixes within the SAP systems</li>
+          <li>Implemented Python scripts for monthly data extraction from SAP tables for computing key system metrics</li>
+          <li>Led implementation of SAP Cash Collections integration, automating workflows, and coordinating with development teams for 100% on-time project delivery</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="section">
+      <div class="section-label">Projects</div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-title">Self-Hosted Uptime Monitoring Platform</div>
+          <div class="project-stack">Node.js · Express · PostgreSQL · Docker · React · Gemini API</div>
+          <ul class="bullets">
+            <li>Engineered a self-hosted uptime monitoring system capable of handling multiple endpoint checks, deployed via Docker Compose for single-command setup</li>
+            <li>Designed automated health-check engine using Axios with configurable intervals, persisting log data in a PostgreSQL powered database</li>
+            <li>Integrated Gemini API for intelligent anomaly detection and advanced insights</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">Atlantis — Agentic AI Troubleshooting &amp; Automation Platform</div>
+          <div class="project-stack">Python · MCP-Agent · Tavily · MongoDB Atlas · React · Gemini</div>
+          <ul class="bullets">
+            <li>Built a full-stack agentic AI system using mcp-agent that routes user queries to multiple MCP tools, enabling web search, system diagnostics, and command execution through controlled tool calls</li>
+            <li>Integrated Tavily MCP for fast, source-cited web search and a custom Windows command MCP server to safely run reversible system commands with guardrails and confirmation flows</li>
+            <li>Developed a React-based agent console for chat, tool-usage visualization, command previews, and session replay, backed by MongoDB Atlas for logging and per-user preferences</li>
+            <li>Implemented safety mechanisms—including whitelisted commands, dry-run previews, and stepwise validation—to ensure secure, sandboxed automation on user devices</li>
+          </ul>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">AI-Powered Diabetes Management Platform <span style="font-size:6.5px;color:#aaa;font-weight:400;font-style:italic;">(In Progress)</span></div>
+          <div class="project-stack">Node.js · Next.js · PostgreSQL · AWS S3 · LLM Fine-tuning · Generative AI</div>
+          <ul class="bullets">
+            <li>Fine-tuned an open-source LLaMA 3.1 model using qLoRA and 4-bit quantization for diabetes-specific health data</li>
+            <li>Integrated WhatsApp via Zapier as a data collection pipeline for glucose readings, with planned CGM device support</li>
+            <li>Implemented secure AWS S3 pipelines with PII detection and anonymization using AWS Macie for HIPAA-conscious data handling</li>
+            <li>Developing a Next.js analytics dashboard and LLM-powered conversational interface; designed workflows and UI in Figma</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Education + Certifications -->
+    <div class="bottom-row">
+      <div>
+        <div class="section-label">Education</div>
+        <div class="edu-entry">
+          <div class="edu-school">Stony Brook University</div>
+          <div class="edu-degree">Master of Science · Computer Engineering</div>
+          <div class="edu-meta">Aug 2023 – May 2025 · Stony Brook, NY</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-school">SRM Institute of Science and Technology</div>
+          <div class="edu-degree">Bachelor of Science · Information Technology</div>
+          <div class="edu-meta">Jul 2015 – May 2019 · Chennai, India</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Certifications</div>
+        <span class="cert-tag">AWS Certified Solutions Architect – Associate</span>
+        <span class="cert-tag">Azure Administrator Associate (In Progress)</span>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

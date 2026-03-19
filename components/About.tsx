@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+const resumeUrl = new URL("../resume_ac.pdf", import.meta.url).href;
+
 const CELL = "rounded-2xl p-4 flex flex-col gap-2";
 const DARK = { background: "#d94e0f", border: "1px solid rgba(255,255,255,0.1)" };
 const LIGHT = { background: "#FFF8F2", border: "1px solid rgba(0,0,0,0.06)" };
@@ -280,6 +282,19 @@ const About = () => (
             <p className="font-inter text-base font-light leading-relaxed text-neutral-700">
                 As for what I'm like to work with, I'd say mystery box. You never quite know what you're going to get, but it's usually worth it.
             </p>
+            <a
+                href={resumeUrl}
+                download="Anirudh_Chandrasekaran_Resume.pdf"
+                className="inline-flex items-center gap-2 self-start font-inter text-sm px-4 py-2 rounded-full text-white no-underline transition-opacity duration-200 hover:opacity-80"
+                style={{ background: "#d94e0f" }}
+            >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download Resume
+            </a>
         </div>
 
         {/* Right: Bento */}
